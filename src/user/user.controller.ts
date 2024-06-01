@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -15,7 +15,11 @@ export class UserController {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.userService.findAll();
+    const users = this.userService.findAll();
+    if (users.length === 0) {
+      throw new HttpException('Users Not Found', HttpStatus.NOT_FOUND);
+    }
+    return users;
   }
 
   @Get(':id')

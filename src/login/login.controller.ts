@@ -1,5 +1,4 @@
 import { Controller, Bind, Get, Req, Param, Post } from '@nestjs/common';
-import { log } from 'console';
 
 @Controller('login')
 export class LoginController {
@@ -15,7 +14,7 @@ export class LoginController {
   }
 
   @Get(':id')
-  findOne(@Param() params: any): string {
-    return `This action returns a #${params.id}`;
+  findOne(@Param('id') id: string): string {
+    return `This action returns a #${id}`;
   }
 }

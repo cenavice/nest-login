@@ -9,14 +9,6 @@ export class UserService {
 
   create(createUserDto: CreateUserDto) {
     this.users.push(createUserDto);
-
-    console.log('====================================');
-    console.log(
-      CreateUserDto,
-      this.users
-    );
-    console.log('====================================');
-    
     return 'This action adds a new user';
   }
 
